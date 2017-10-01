@@ -37,6 +37,14 @@ ga('create','UA-XXXXX-X');ga('send','pageview');
 
 <script type="text/javascript">
     $("#birthdayPicker").birthdayPicker();
+    $('#labChck').change(function(e){
+        if($('#labChck:checked').length > 0){
+            $('#noteBox').fadeOut();
+        }
+        else {
+            $('#noteBox').fadeIn();
+        }
+    });
 </script>
 </body>
 </html>

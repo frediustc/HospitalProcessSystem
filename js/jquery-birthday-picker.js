@@ -30,7 +30,7 @@ $(function ($)
         }
 
         // Create the html picker skeleton
-          var $fieldset = $("<fieldset class='birthdayPicker row'></fieldset>"),
+          var $fieldset = $("<div class='birthdayPicker row'></div>"),
             $year = $("<select required class='birthYear col-sm-3 offset-sm-1 form-control "+options.sizeClass+"' name='_y'></select>"),
               $month = $("<select required class='birthMonth col-sm-3 offset-sm-1 form-control "+options.sizeClass+"' name='_m'></select>"),
               $day = $("<select required class='birthDate col-sm-3 form-control "+options.sizeClass+"' name='_d'></select>")

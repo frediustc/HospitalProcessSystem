@@ -2,12 +2,32 @@
   <div class="side-navbar-wrapper">
     <div class="sidenav-header d-flex align-items-center justify-content-center">
       <div class="sidenav-header-inner text-center"><img src="img/avatar-1.jpg" alt="person" class="img-fluid rounded-circle">
-        <h2 class="h5 text-uppercase">Anderson Hardy</h2><span class="text-uppercase">Web Developer</span>
+        <h2 class="h5 text-uppercase"><?php echo $_SESSION['un'] ?></h2><span class="text-uppercase"><?php echo $_SESSION['r'] ?></span>
       </div>
-      <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+      <div class="sidenav-header-logo"><a href="logout.php" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
     </div>
     <div class="main-menu">
-      <ul id="side-main-menu" class="side-menu list-unstyled">
+        <?php
+        
+        switch ($_SESSION['ut']) {
+            case 2:
+                include ('php/include/NurseMenu.php');
+                break;
+            case 3:
+                include ('php/include/LabMenu.php');
+                break;
+            case 4:
+                include ('php/include/AccountMenu.php');
+                break;
+            case 5:
+                include ('php/include/DoctorMenu.php');
+                break;
+            case 6:
+                include ('php/include/AdminMenu.php');
+                break;
+        }
+         ?>
+      <!-- <ul id="side-main-menu" class="side-menu list-unstyled">
         <li class="active"><a href="./"> <i class="icon-home"></i><span>Home</span></a></li>
         <li> <a href="#pages-nav-list" data-toggle="collapse" aria-expanded="false"><i class="icon-interface-windows"></i><span>Employee</span>
             <div class="arrow pull-right"><i class="fa fa-angle-down"></i></div></a>
@@ -42,5 +62,5 @@
         <li> <a href=""> <i class="icon-picture"> </i><span>Demo</span></a></li>
       </ul>
     </div>
-  </div>
+  </div> -->
 </nav>
