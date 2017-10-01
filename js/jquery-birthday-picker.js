@@ -31,10 +31,10 @@ $(function ($)
 
         // Create the html picker skeleton
           var $fieldset = $("<fieldset class='birthdayPicker row'></fieldset>"),
-            $year = $("<select class='birthYear col-sm-3 offset-sm-1 form-control "+options.sizeClass+"' name='"+parentId+"_birth[year]'></select>"),
-              $month = $("<select class='birthMonth col-sm-3 offset-sm-1 form-control "+options.sizeClass+"' name='"+parentId+"_birth[month]'></select>"),
-              $day = $("<select class='birthDate col-sm-3 form-control "+options.sizeClass+"' name='"+parentId+"_birth[day]'></select>")
-              $birthday = $("<input class='birthDay' name='"+options.name+"' type='hidden'/>");
+            $year = $("<select required class='birthYear col-sm-3 offset-sm-1 form-control "+options.sizeClass+"' name='_y'></select>"),
+              $month = $("<select required class='birthMonth col-sm-3 offset-sm-1 form-control "+options.sizeClass+"' name='_m'></select>"),
+              $day = $("<select required class='birthDate col-sm-3 form-control "+options.sizeClass+"' name='_d'></select>")
+              $birthday = $("<input class='birthDay' name='bd' type='hidden'/>");
 
          // Add the option placeholders if specified
           if (options.placeholder) {
