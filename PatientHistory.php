@@ -1,4 +1,12 @@
-<?php include 'php/include/head.php'; ?>
+<?php
+if(!isset($_GET['id'])){
+    header('location: history.php');
+}
+if(empty($_GET['id']) || (int)$_GET['id'] <= 0){
+    header('location: history.php');
+}
+include 'php/include/head.php';
+?>
 <section class="mt-5">
     <div class="container-fluid">
         <div class="row">

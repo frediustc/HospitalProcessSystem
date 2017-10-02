@@ -23,7 +23,7 @@
                         <th>Sex</th>
                         <th>Age</th>
                         <th>History</th>
-                        <?php if ($_SESSION['r'] == 'Nurse'): ?>
+                        <?php if ($_SESSION['r'] == 'Nurse' || $_SESSION['r'] == 'Admin'): ?>
                             <th>Option</th>
                         <?php endif; ?>
                       </tr>
@@ -43,9 +43,9 @@
                               <td><?php echo $emp['sex'] ?></td>
                               <td><?php echo $age ?> Yrs</td>
                               <td><a href="patientHistory.php?id=<?php echo $emp['id']; ?>" class="btn btn-primary" title="give result"><span class="fa fa-external-link"></span></a></td>
-                              <?php if ($_SESSION['r'] == 'Nurse'): ?>
+                              <?php if ($_SESSION['r'] == 'Nurse' || $_SESSION['r'] == 'Admin'): ?>
                                   <td>
-                                      <a href="editEmployee.php?id=<?php echo $emp['id']; ?>" class="btn btn-primary" title="edit"><span class="fa fa-pencil"></span></a>
+                                      <a href="editPatient.php?id=<?php echo $emp['id']; ?>" class="btn btn-primary" title="edit"><span class="fa fa-pencil"></span></a>
                                   </td>
                               <?php endif; ?>
                             </tr>

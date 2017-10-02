@@ -47,7 +47,6 @@
                         <th>Paid</th>
                         <th>Made by</th>
                         <th>Date</th>
-                        <th>Option</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -59,10 +58,9 @@
                             <tr>
                                 <th scope="row">#<?php echo $i ?></th>
                                 <td><?php echo $pay['fullname'] ?></td>
-                                <td><?php echo $pay['pay'] ?></td>
+                                <td><?php echo $pay['pay'] ?>Ghc</td>
                                 <td><?php echo $a['fullname'] ?></td>
                                 <td><?php echo humanTiming(strtotime($pay['paydate'])); ?> ago</td>
-                                <td><a href="editPay.php?id=<?php echo $pay['id']; ?>" class="btn btn-primary" title="edit"><span class="fa fa-pencil"></span></a></td>
                             </tr>
                         <?php } ?>
 
