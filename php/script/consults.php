@@ -31,14 +31,16 @@ if(isset($_POST['finish'])){
         if($ok){
             $stdadd = $db->prepare('INSERT INTO records(cid, did, cdate, note) VALUES(?, ?, NOW(), ?)');
             if($stdadd->execute(array($_GET['id'], $_SESSION['id'], nl2br($note)))){
-
-                echo '<div class="alert alert-success alert-dismissible fade in show" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                  </button>
-                  <strong>Sucess!</strong> Consulation Done.
-                </div>';
+                $upd = $db->prepare('UPDATE consultation SET status = "seen" WHERE id = ?');
+                if($upd->execute(array($_GET['id']))){
+                    echo '<div class="alert alert-success alert-dismissible fade in show" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                      </button>
+                      <strong>Sucess!</strong> Consulation Done.
+                    </div>';
+                }
             }
             else {
                 echo '<div class="alert alert-danger" role="alert"><strong>Error</strong> Something went wrong</div>';
