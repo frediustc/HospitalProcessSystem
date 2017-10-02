@@ -22,6 +22,7 @@
                         <th>Number</th>
                         <th>Sex</th>
                         <th>Age</th>
+                        <th>History</th>
                         <?php if ($_SESSION['r'] == 'Nurse'): ?>
                             <th>Option</th>
                         <?php endif; ?>
@@ -41,9 +42,9 @@
                               <td>(+233) <?php echo $emp['phone'] ?></td>
                               <td><?php echo $emp['sex'] ?></td>
                               <td><?php echo $age ?> Yrs</td>
+                              <td><a href="patientHistory.php?id=<?php echo $emp['id']; ?>" class="btn btn-primary" title="give result"><span class="fa fa-external-link"></span></a></td>
                               <?php if ($_SESSION['r'] == 'Nurse'): ?>
                                   <td>
-                                      <!-- <a href="delete.php?id=<?php echo $emp['id']; ?>" class="btn btn-danger" title="delete"><span class="fa fa-trash"></span></a> -->
                                       <a href="editEmployee.php?id=<?php echo $emp['id']; ?>" class="btn btn-primary" title="edit"><span class="fa fa-pencil"></span></a>
                                   </td>
                               <?php endif; ?>

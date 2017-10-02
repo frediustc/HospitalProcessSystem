@@ -69,37 +69,44 @@ include 'php/include/head.php';
                       <div class="card-block">
                         <table class="table table-striped table-sm">
                             <?php
-                            $cons = $db->prepare('SELECT * FROM consultation WHERE id = ?');
+                            $cons = $db->prepare('SELECT users.fullname, consultation.arrivaldate, consultation.id, consultation.assignto
+                            FROM consultation
+                            INNER JOIN users ON users.id = consultation.patientid
+                            WHERE consultation.id = ?');
                             $cons->execute(array($_GET['id']));
                              ?>
 
                           <thead>
                             <tr>
                               <th>Patient</th>
-                              <th>Weig.</th>
-                              <th>Pres.</th>
-                              <th>Temp.</th>
-                              <th>Symptom</th>
-                              <th>Nurse</th>
+                              <th>Doctor</th>
+                              <th>Note</th>
+                              <th>Lab</th>
+                              <th>date</th>
                             </tr>
                           </thead>
                           <tbody>
                               <?php while ($con = $cons->fetch()) {
-                                  $pat = $db->prepare('SELECT fullname FROM users WHERE id = ?');
-                                  $pat->execute(array($con['patientid']));
-                                  $p = $pat->fetch();
+                                  $doc = $db->prepare('SELECT fullname FROM users WHERE id = ?');
+                                  $doc->execute(array($con['assignto']));
+                                  $d = $doc->fetch();
 
-                                  $nurse = $db->prepare('SELECT fullname FROM users WHERE id = ?');
-                                  $nurse->execute(array($con['nurseid']));
-                                  $d = $nurse->fetch();
+                                  $not = $db->prepare('SELECT note FROM records WHERE cid = ? AND did = ?');
+                                  $not->execute(array($con['id'], $con['assignto']));
+                                  $n = $not->fetch();
+
+                                  $lab = $db->prepare('SELECT id, COUNT(id) AS c FROM labexam WHERE cid = ? AND status = "done"');
+                                  $lab->execute(array($con['id']));
+                                  $l = $lab->fetch();
+
+                                  $display = $l['c'] > 0 ? '<a href="ViewResult.php?id=' . $l['id'] . '" class="btn btn-primary" title="give result"><span class="fa fa-external-link"></span></a>': 'No';
                                   ?>
                                   <tr>
-                                    <td><?php echo $p['fullname'] ?></td>
-                                    <td><?php echo $con['weight'] ?></td>
-                                    <td><?php echo $con['pressure'] ?></td>
-                                    <td><?php echo $con['temperature'] ?></td>
-                                    <td><?php echo $con['symptom'] ?></td>
+                                    <td><?php echo $con['fullname'] ?></td>
                                     <td><?php echo $d['fullname'] ?></td>
+                                    <td><?php echo $n['note'] ?></td>
+                                    <td><?php echo $display ?></td>
+                                    <td><?php echo $con['arrivaldate'] ?></td>
                                   </tr>
                               <?php } ?>
 

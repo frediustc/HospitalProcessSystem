@@ -23,6 +23,7 @@
                         <th>Number</th>
                         <th>Sex</th>
                         <th>Age</th>
+                        <th>History</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -43,6 +44,7 @@
                               <td>(+233) <?php echo $p['phone'] ?></td>
                               <td><?php echo $p['sex'] ?></td>
                               <td><?php echo $age ?> Yrs</td>
+                              <td><a href="patientHistory.php?id=<?php echo $p['id']; ?>" class="btn btn-primary" title="give result"><span class="fa fa-external-link"></span></a></td>
                             </tr>
                         <?php } ?>
 
