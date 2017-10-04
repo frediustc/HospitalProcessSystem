@@ -9,29 +9,19 @@ if (isset($_POST['login'])) {
         $_SESSION['id'] = $user['id'];
         $_SESSION['ut'] = $user['usertype'];
         $_SESSION['un'] = $user['username'];
+        $_SESSION['fn'] = $user['fullname'];
+        $_SESSION['bd'] = $user['birthday'];
+        $_SESSION['gd'] = $user['sex'];
+        $_SESSION['ph'] = $user['phone'];
         $roles = $db->prepare('SELECT type FROM usertype WHERE id = ?');
         $roles->execute(array($user['usertype']));
         $r = $roles->fetch();
         $_SESSION['r'] = $r['type'];
-        switch ($user['usertype']) {
-            case 2:
-                header('location: NurseDashboard.php');
-                break;
-            case 3:
-                header('location: LabDashboard.php');
-                break;
-            case 4:
-                header('location: AccountDashboard.php');
-                break;
-            case 5:
-                header('location: DoctorDashboard.php');
-                break;
-            case 6:
-                header('location: AdminDashboard.php');
-                break;
-            default:
-                echo '<div class="alert alert-danger" role="alert"><strong>Error</strong> Wrong usertype</div>';
-                break;
+        if ($user['usertype'] == 6) {
+            header('location: AdminDashboard.php');
+        }
+        else {
+            header('location: Dashboard.php');
         }
     }
     else {

@@ -21,7 +21,7 @@
 <script src="js/jquery.nicescroll.min.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/Chart.min.js"></script>
-<script src="js/charts-home.js"></script>
+<script src="js/charts-custom.js"></script>
 <script src="js/front.js"></script>
 <script src="js/jquery-birthday-picker.js"></script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
